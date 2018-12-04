@@ -87,4 +87,5 @@ public class Libro extends RealmObject {
     public void setDisponible(boolean disp) {
         this.disponible = disp;
     }
+
 }
