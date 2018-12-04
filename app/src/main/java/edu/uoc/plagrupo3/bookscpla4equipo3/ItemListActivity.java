@@ -2,6 +2,8 @@ package edu.uoc.plagrupo3.bookscpla4equipo3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,6 +12,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.mikepenz.fontawesome_typeface_library.FontAwesome;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsLayoutInflater2;
@@ -21,13 +32,18 @@ import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
 import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import edu.uoc.plagrupo3.bookscpla4equipo3.dummy.DummyContent;
+import edu.uoc.plagrupo3.bookscpla4equipo3.modeloDatos.Libro;
+import edu.uoc.plagrupo3.bookscpla4equipo3.modeloDatos.LibroDatos;
+import io.realm.Realm;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,6 +61,14 @@ public class ItemListActivity extends AppCompatActivity {
      * device.
      */
     private boolean mTwoPane;
+
+    //Variables relacionadas con FireBase
+    private FirebaseAuth mAuth;
+    private FirebaseDatabase database;
+    private FirebaseUser user;
+
+    //Adapter que utilizamos para mostrar la lista de libros
+    private SimpleItemRecyclerViewAdapter adaptador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -125,29 +149,37 @@ public class ItemListActivity extends AppCompatActivity {
             // activity should be in two-pane mode.
             mTwoPane = true;
         }
-
-        View recyclerView = findViewById(R.id.item_list);
+        //Inicializamos la base de datos local
+        Realm.init(getApplicationContext());
+        //Estableemos la conexion con la base de datos
+        LibroDatos.conexion = Realm.getDefaultInstance();
+        iniciaCarga(false);
+        /*View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        setupRecyclerView((RecyclerView) recyclerView);*/
     }
 
     private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(this, DummyContent.ITEMS, mTwoPane));
+        //Preparamos los datos a mostrar indicando de donde se obtienen los datos
+        // y el número de paneles
+        adaptador = new SimpleItemRecyclerViewAdapter(this, LibroDatos.listalibros, mTwoPane);
+        recyclerView.setAdapter(adaptador);
     }
 
     public static class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
         private final ItemListActivity mParentActivity;
-        private final List<DummyContent.DummyItem> mValues;
+        private List<Libro> mValues;
         private final boolean mTwoPane;
         private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                DummyContent.DummyItem item = (DummyContent.DummyItem) view.getTag();
+                //Control cuando seleccionan un libro
+                Libro item = (Libro) view.getTag();
                 if (mTwoPane) {
                     Bundle arguments = new Bundle();
-                    arguments.putString(ItemDetailFragment.ARG_ITEM_ID, item.id);
+                    arguments.putInt(ItemDetailFragment.ARG_ITEM_ID, item.getId());
                     ItemDetailFragment fragment = new ItemDetailFragment();
                     fragment.setArguments(arguments);
                     mParentActivity.getSupportFragmentManager().beginTransaction()
@@ -156,7 +188,7 @@ public class ItemListActivity extends AppCompatActivity {
                 } else {
                     Context context = view.getContext();
                     Intent intent = new Intent(context, ItemDetailActivity.class);
-                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.id);
+                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, item.getId());
 
                     context.startActivity(intent);
                 }
@@ -164,7 +196,7 @@ public class ItemListActivity extends AppCompatActivity {
         };
 
         SimpleItemRecyclerViewAdapter(ItemListActivity parent,
-                                      List<DummyContent.DummyItem> items,
+                                      List<Libro> items,
                                       boolean twoPane) {
             mValues = items;
             mParentActivity = parent;
@@ -179,9 +211,17 @@ public class ItemListActivity extends AppCompatActivity {
         }
 
         @Override
+        public int getItemViewType(int position){
+            //Cómo queremos un layout distinto para pares e impares, aquí utilizamos
+            //position que nos indica la posición del elemento de la lista para
+            //gestionar el viewType de la función onCreateViewHolder
+            return position % 2;
+        }
+
+        @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
-            holder.mIdView.setText(mValues.get(position).id);
-            holder.mContentView.setText(mValues.get(position).content);
+            holder.titulolista.setText(mValues.get(position).getTitulo());
+            //holder.autorlista.setText(mValues.get(position).getAuthor());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -193,14 +233,113 @@ public class ItemListActivity extends AppCompatActivity {
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
-            final TextView mIdView;
-            final TextView mContentView;
+            final TextView titulolista;
+            //final TextView autorlista;
 
             ViewHolder(View view) {
                 super(view);
-                mIdView = (TextView) view.findViewById(R.id.id_text);
-                mContentView = (TextView) view.findViewById(R.id.content);
+                titulolista = (TextView) view.findViewById(R.id.id_text);
+                //autorlista = (TextView) view.findViewById(R.id.autor);
             }
         }
+        //Método que actuliza los datos de lista.
+        public void setItems(List<Libro> items) {
+            Log.d("TAG", "actualizando");
+            mValues = items;
+            notifyDataSetChanged();
+            //Indicamos que se ha actualizado la lista y que se tiene que refrescar
+        }
     }
+
+
+
+    private  void iniciaCarga(boolean actualiza){
+        /* Control de Internet
+         * En caso de que no haya conexión a la RED no se realizará la carga de los datos
+         * desde el servidor FireBase
+         * El valor de actualiza es el que indica si estamos creando el adaptador o se
+         * refresca la lista
+         * */
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo actNetInfo = connectivityManager.getActiveNetworkInfo();
+
+        if (actNetInfo != null && actNetInfo.isConnected() && actNetInfo.isAvailable()) {
+            Toast.makeText(this, "Red activada, cargando datos desde FireBase", Toast.LENGTH_LONG).show();
+            cargaDatosFirebase(actualiza);
+        }
+        else{
+            Toast.makeText(this, "No hay acceso a Internet, se carga la información de la base de datos local", Toast.LENGTH_LONG).show();
+
+            cargarRealm(actualiza);
+        }
+    }
+
+    private void cargaDatosFirebase(final boolean actualiza){
+        //Nuevas característivas de Firebase en el proyecto
+        FirebaseApp.initializeApp(ItemListActivity.this);
+        mAuth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference().child("books");
+        // Leemos la información de la Base de Datos
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                GenericTypeIndicator<ArrayList<Libro>> genericTypeIndicator =new GenericTypeIndicator<ArrayList<Libro>>(){};
+                //Obtenemos el listado y lo asignamos a lalista que utilizamos ne la aplicación
+                LibroDatos.listalibros=dataSnapshot.getValue(genericTypeIndicator);
+                for (int i=0;i<LibroDatos.listalibros.size();i++) {
+                    //Actualizamos el id puesto que no esta en Firebase
+                    LibroDatos.listalibros.get(i).setId(i);
+                    if (!LibroDatos.exists(LibroDatos.listalibros.get(i))){
+                        //Si el libro no existe lo añadimos a la base de datos local
+                        LibroDatos.conexion.beginTransaction();
+                        LibroDatos.conexion.insert(LibroDatos.listalibros.get(i));
+                        LibroDatos.conexion.commitTransaction();
+                    }
+                }
+                //El parámetro actualiza indica si es una nueva carga, o actualizar la lista
+                if (!actualiza)
+                    cargaReciclerView();
+                else
+                    adaptador.setItems(LibroDatos.listalibros);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                //Si no se ha posidido leer del servidor firebase
+                Toast.makeText(ItemListActivity.this, "No se leído desde el servidor, se carga la información de la base de datos local", Toast.LENGTH_LONG).show();
+                cargarRealm(actualiza);
+                Log.i("TAG", "Error de lectura.", error.toException());
+            }
+        });
+
+    }
+
+    //Función encargada de obtener los datos desde la base de datos local, y rellenar la lista
+    private void cargarRealm(boolean actualiza){
+        /*LibroDatos.conexion.beginTransaction();
+        //Recuperamos todos los libros de a base de datos
+        final RealmResults<Libro> ls = LibroDatos.conexion.where(Libro.class).findAll();
+        LibroDatos.conexion.commitTransaction();*/
+        LibroDatos.listalibros = (ArrayList)LibroDatos.getBooks();
+        Log.d("TAG","datos" + LibroDatos.listalibros.size());
+        //El parámetro actualiza indica si es una nueva carga, o actualizar la lista
+        if (!actualiza)
+            cargaReciclerView();
+        else
+            adaptador.setItems(LibroDatos.listalibros);
+    }
+
+    //Función que genera el recyclerview
+    void cargaReciclerView(){
+        View recyclerView = findViewById(R.id.item_list);
+        assert recyclerView != null;
+        setupRecyclerView((RecyclerView) recyclerView);
+    }
+
+
+
+
 }

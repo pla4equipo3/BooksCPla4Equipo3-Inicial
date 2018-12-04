@@ -16,6 +16,10 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -27,7 +31,13 @@ dependencies {
     implementation "com.mikepenz:materialdrawer:6.1.1"
     implementation "com.mikepenz:iconics-core:3.1.0"
     implementation 'com.mikepenz:fontawesome-typeface:5.3.1.1@aar'
+    implementation 'com.google.firebase:firebase-core:16.0.5'
+    implementation 'com.google.firebase:firebase-database:16.0.5'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1-alpha01'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1-alpha01'
 }
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'realm-android'
