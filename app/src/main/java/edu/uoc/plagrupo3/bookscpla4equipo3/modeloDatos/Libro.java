@@ -87,5 +87,10 @@ public class Libro extends RealmObject {
     public void setDisponible(boolean disp) {
         this.disponible = disp;
     }
+    public String getTextoDisp() {
+        String mensaje = "No disponible";
+        if (this.disponible) mensaje = "Disponible";
+        return mensaje;
+    }
 
 }

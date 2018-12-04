@@ -2,6 +2,7 @@ package edu.uoc.plagrupo3.bookscpla4equipo3;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -221,7 +223,14 @@ public class ItemListActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
             holder.titulolista.setText(mValues.get(position).getTitulo());
-            //holder.autorlista.setText(mValues.get(position).getAuthor());
+            holder.autorlista.setText(mValues.get(position).getAutor());
+            holder.fechalista.setText(mValues.get(position).getFechapub());
+            holder.disponiblelista.setText(mValues.get(position).getTextoDisp());
+            if (mValues.get(position).estaDisponible())
+                holder.disponiblelista.setTextColor(Color.GREEN);
+            else
+                holder.disponiblelista.setTextColor(Color.RED);
+            new LibroDatos.cargaImagendeURL(holder.imagenlista).execute(mValues.get(position).getUrlimage());
 
             holder.itemView.setTag(mValues.get(position));
             holder.itemView.setOnClickListener(mOnClickListener);
@@ -234,12 +243,18 @@ public class ItemListActivity extends AppCompatActivity {
 
         class ViewHolder extends RecyclerView.ViewHolder {
             final TextView titulolista;
-            //final TextView autorlista;
+            final TextView autorlista;
+            final TextView fechalista;
+            final TextView disponiblelista;
+            final ImageView imagenlista;
 
             ViewHolder(View view) {
                 super(view);
-                titulolista = (TextView) view.findViewById(R.id.id_text);
-                //autorlista = (TextView) view.findViewById(R.id.autor);
+                titulolista = (TextView) view.findViewById(R.id.id_titulo);
+                autorlista = (TextView) view.findViewById(R.id.autor);
+                fechalista = (TextView) view.findViewById(R.id.fechaP);
+                disponiblelista = (TextView) view.findViewById(R.id.id_disponible);
+                imagenlista = (ImageView) view.findViewById(R.id.libro_imagen_detail);
             }
         }
         //Método que actuliza los datos de lista.
