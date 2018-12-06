@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "309471081943",
+    "firebase_url": "https://pla4equipo3-70358.firebaseio.com",
+    "project_id": "pla4equipo3-70358",
+    "storage_bucket": "pla4equipo3-70358.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:309471081943:android:58db1f48cfa203db",
+        "android_client_info": {
+          "package_name": "edu.uoc.plagrupo3.bookscpla4equipo3"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "309471081943-dsuf4i6q8guqbhct9deqn171ni767d26.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "edu.uoc.plagrupo3.bookscpla4equipo3",
+            "certificate_hash": "699f61b988444d6007834cf473050ef2747b0139"
+          }
+        },
+        {
+          "client_id": "309471081943-uad74eu46623gca246sbd806ksq7fglc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3blLc6S7qDgpDyVkjnTnc8GOJnQgXNpw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "309471081943-uad74eu46623gca246sbd806ksq7fglc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

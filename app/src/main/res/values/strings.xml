@@ -1,11 +1,34 @@
 <resources>
-    <string name="app_name">BooksCPla4Equipo3</string>
+
+    <!-- Pantalla ItemListActivity -->
+
+    <string name="app_name">BookCrossing</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="MenuListarLibros">Listar Libros</string>
     <string name="MenuMisFavoritos">Mis Favoritos</string>
     <string name="MenuMisReservas">Mis Reservas</string>
     <string name="MenuAñadirLibro">Añadir Libro</string>
     <string name="MenuConfiguracion">Configuración</string>
+    <string name="MenuCerrarSesion">Cerrar Sesión</string>
     <string name="MenuCompartirconFacebook">Compartir con Facebook</string>
     <string name="MenuCompartirconWhatsapp">Compartir con WhasApp</string>
+    <string name="action_closeSesion">Cerrar Sesión</string>
+    <string name="action_pregunta_closeSesion">Seguro que desea cerrar la sesión?</string>
+    <string name="SI">SI</string>
+    <string name="NO">NO</string>
+
+
+    <!-- Pantalla Login -->
+
+    <string name="FotoLogo">Logo Aplicación</string>
+    <string name="ErrorSesionGoogle">No se pudo iniciar sesión con Google</string>
+    <string name="ErrorSesionFirebase">No se pudo iniciar sesión con Firebase</string>
+    <string name="ErrorAlmacenamiento">Ocurrió un Error,asegúrese de otorgar el permiso de almacenamiento a la aplicación</string>
+    <string name="TextoDescriptivoAplicacion">Aplicación Android Bookcrossing </string>
+    <string name="ErrorWhatsapp">Whatsapp no está instalado</string>
+
+
+
+
+
 </resources>
