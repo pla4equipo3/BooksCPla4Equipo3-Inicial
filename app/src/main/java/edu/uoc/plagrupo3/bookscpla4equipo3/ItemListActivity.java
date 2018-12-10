@@ -155,7 +155,7 @@ public class ItemListActivity extends AppCompatActivity {
         Realm.init(getApplicationContext());
         //Estableemos la conexion con la base de datos
         LibroDatos.conexion = Realm.getDefaultInstance();
-        iniciaCarga(false);
+        iniciaCarga();
         /*View recyclerView = findViewById(R.id.item_list);
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);*/
@@ -268,12 +268,10 @@ public class ItemListActivity extends AppCompatActivity {
 
 
 
-    private  void iniciaCarga(boolean actualiza){
+    private  void iniciaCarga(){
         /* Control de Internet
          * En caso de que no haya conexión a la RED no se realizará la carga de los datos
          * desde el servidor FireBase
-         * El valor de actualiza es el que indica si estamos creando el adaptador o se
-         * refresca la lista
          * */
         ConnectivityManager connectivityManager = (ConnectivityManager)
                 getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -282,16 +280,16 @@ public class ItemListActivity extends AppCompatActivity {
 
         if (actNetInfo != null && actNetInfo.isConnected() && actNetInfo.isAvailable()) {
             Toast.makeText(this, "Red activada, cargando datos desde FireBase", Toast.LENGTH_LONG).show();
-            cargaDatosFirebase(actualiza);
+            cargaDatosFirebase();
         }
         else{
             Toast.makeText(this, "No hay acceso a Internet, se carga la información de la base de datos local", Toast.LENGTH_LONG).show();
 
-            cargarRealm(actualiza);
+            cargarRealm();
         }
     }
 
-    private void cargaDatosFirebase(final boolean actualiza){
+    private void cargaDatosFirebase(){
         //Nuevas característivas de Firebase en el proyecto
         FirebaseApp.initializeApp(ItemListActivity.this);
         mAuth = FirebaseAuth.getInstance();
@@ -314,18 +312,14 @@ public class ItemListActivity extends AppCompatActivity {
                         LibroDatos.conexion.commitTransaction();
                     }
                 }
-                //El parámetro actualiza indica si es una nueva carga, o actualizar la lista
-                if (!actualiza)
                     cargaReciclerView();
-                else
-                    adaptador.setItems(LibroDatos.listalibros);
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 //Si no se ha posidido leer del servidor firebase
                 Toast.makeText(ItemListActivity.this, "No se leído desde el servidor, se carga la información de la base de datos local", Toast.LENGTH_LONG).show();
-                cargarRealm(actualiza);
+                cargarRealm();
                 Log.i("TAG", "Error de lectura.", error.toException());
             }
         });
@@ -333,7 +327,7 @@ public class ItemListActivity extends AppCompatActivity {
     }
 
     //Función encargada de obtener los datos desde la base de datos local, y rellenar la lista
-    private void cargarRealm(boolean actualiza){
+    private void cargarRealm(){
         /*LibroDatos.conexion.beginTransaction();
         //Recuperamos todos los libros de a base de datos
         final RealmResults<Libro> ls = LibroDatos.conexion.where(Libro.class).findAll();
@@ -341,10 +335,7 @@ public class ItemListActivity extends AppCompatActivity {
         LibroDatos.listalibros = (ArrayList)LibroDatos.getBooks();
         Log.d("TAG","datos" + LibroDatos.listalibros.size());
         //El parámetro actualiza indica si es una nueva carga, o actualizar la lista
-        if (!actualiza)
-            cargaReciclerView();
-        else
-            adaptador.setItems(LibroDatos.listalibros);
+        cargaReciclerView();
     }
 
     //Función que genera el recyclerview
@@ -353,8 +344,4 @@ public class ItemListActivity extends AppCompatActivity {
         assert recyclerView != null;
         setupRecyclerView((RecyclerView) recyclerView);
     }
-
-
-
-
 }
