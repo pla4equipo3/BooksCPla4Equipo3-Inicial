@@ -1,5 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- Pantalla ItemListActivity -->
 
     <string-array name="idioma_array">
@@ -10,16 +10,16 @@
 
     <string name="app_name">BookCrossing</string>
     <string name="title_item_list">Listado de Libros</string>
-    <string name="title_item_detail">Item Detail</string>
+    <string name="title_item_detail">Sin Titulo</string>
     <string name="MenuListarLibros">Listar Libros</string>
     <string name="MenuMisFavoritos">Mis Favoritos</string>
     <string name="MenuMisReservas">Mis Reservas</string>
     <string name="MenuAñadirLibro">Añadir Libro</string>
-    <string name="MenuConfiguracion">Configuración</string>
+    <string name="MenuConfiguracion">Configuración Idioma</string>
     <string name="MenuCerrarSesion">Cerrar Sesión</string>
-    <string name="MenuCompartirconMisApps">Compartir con mis Apps</string>
+    <string name="MenuCompartirconMisApps">Compartir con mis Apps.</string>
     <string name="MenuCompartirconWhatsapp">Compartir con WhatsApp</string>
-    <string name="action_pregunta_closeSesion">Seguro que desea cerrar la sesión?</string>
+     <string name="action_pregunta_closeSesion">Seguro que desea cerrar la sesión?</string>
     <string name="SI">SI</string>
     <string name="NO">NO</string>
     <string name="ErrorCargaFirebase">No se leído desde el servidor, se carga la información de la base de datos local</string>
@@ -30,6 +30,7 @@
     <string name="DialogIdioma">Seleccione su idioma preferido </string>
     <string name="ButtonAceptar">Aceptar </string>
     <string name="ButtonCancelar">Cancelar</string>
+
 
 
     <!-- Pantalla Login -->
@@ -53,7 +54,5 @@
     <string name="Localización">Localización</string>
 
     <string name="DialogAñadirFavorito">¿Desea tener en su lista de Favoritos el libro</string>
-
-
 
 </resources>
