@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Pantalla ItemListActivity -->
+
+    <string-array name="idioma_array">
+        <item>Spanish</item>
+        <item>Catalan</item>
+        <item>English</item>
+    </string-array>
+
+    <string name="app_name">BookCrossing</string>
+    <string name="title_item_list">List of Books</string>
+    <string name="title_item_detail">No Title</string>
+    <string name="MenuListarLibros">List Books</string>
+    <string name="MenuMisFavoritos">My Favorites</string>
+    <string name="MenuMisReservas">My Bookings</string>
+    <string name="MenuAñadirLibro">Add Book</string>
+    <string name="MenuConfiguracion">Language Settings</string>
+    <string name="MenuCerrarSesion">Close Session</string>
+    <string name="MenuCompartirconMisApps">Share with my Apps.</string>
+    <string name="MenuCompartirconWhatsapp">Share with WhatsApp</string>
+    <string name="action_pregunta_closeSesion">Sure you want to log out?</string>
+    <string name="SI">YES</string>
+    <string name="NO">NO</string>
+    <string name="ErrorCargaFirebase">Server failed, local database information is loaded</string>
+    <string name="ErrorRed">There is no access to the Internet, loading information from the local database</string>
+    <string name="RedActivada">Network enabled, loading data from FireBase</string>
+    <string name="Detalles_app">Share info. and App icon</string>
+    <string name="ListaFavoritosVacia">The Favorites list is empty </string>
+    <string name="ListaRealmVacia">Local database without data </string>
+    <string name="DialogIdioma">Select your preferred language </string>
+    <string name="ButtonAceptar">Accept </string>
+    <string name="ButtonCancelar">Cancel</string>
+
+
+
+    <!-- Pantalla Login -->
+
+    <string name="FotoLogo">Logo Application</string>
+    <string name="ErrorSesionGoogle">Could not login with Google</string>
+    <string name="ErrorSesionFirebase">Could not login  with Firebase</string>
+    <string name="ErrorAlmacenamiento">An Error occurred, be sure to grant the storage permission to the application</string>
+    <string name="TextoDescriptivoAplicacion">Bookcrossing Android App </string>
+    <string name="ErrorWhatsapp">Whatsapp is not installed</string>
+
+
+    <!--adapter -->
+    <string name="Disponible">Available</string>
+
+    <string name="NoDisponible">Not available</string>
+
+    <!-- fragment detail -->
+    <string name="Liberar">Release</string>
+    <string name="Reservar">Reserve</string>
+    <string name="Localización">Location</string>
+
+    <string name="DialogAñadirFavorito">¿Do you want to have in your Favorites list the book</string>
+    <string name="title_activity_maps">Map</string>
+
+
+</resources>

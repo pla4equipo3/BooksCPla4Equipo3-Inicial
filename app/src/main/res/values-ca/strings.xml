@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Pantalla ItemListActivity -->
+
+    <string-array name="idioma_array">
+        <item>Castellà</item>
+        <item>Català</item>
+        <item>Anglès</item>
+    </string-array>
+
+    <string name="app_name">BookCrossing</string>
+    <string name="title_item_list">LListat de LLibres</string>
+    <string name="title_item_detail">Sense Títol</string>
+    <string name="MenuListarLibros">LListar LLibres</string>
+    <string name="MenuMisFavoritos">Els meus Favorits</string>
+    <string name="MenuMisReservas">Les meves Reserves</string>
+    <string name="MenuAñadirLibro">Afegir LLibre</string>
+    <string name="MenuConfiguracion">Configuració Idioma</string>
+    <string name="MenuCerrarSesion">Tancar Sessió</string>
+    <string name="MenuCompartirconMisApps">Compartir amb les meves Apps.</string>
+    <string name="MenuCompartirconWhatsapp">Compartir amb WhatsApp</string>
+    <string name="action_pregunta_closeSesion">Segur que desitja tancar la sessió?</string>
+    <string name="SI">SI</string>
+    <string name="NO">NO</string>
+    <string name="ErrorCargaFirebase">Error en el servidor,carregant la informació de la base de dades local</string>
+    <string name="ErrorRed">No hi ha accés a Internet, es carrega la informació de la base de dades local</string>
+    <string name="RedActivada">Xarxa activada, carregant  dades desde FireBase</string>
+    <string name="Detalles_app">Compartir info. i icona de la App</string>
+    <string name="ListaFavoritosVacia">La Llista de favorits està buida </string>
+    <string name="ListaRealmVacia">Base de dades local buida </string>
+
+    <string name="DialogIdioma">Seleccioni el seu idioma preferit </string>
+    <string name="ButtonAceptar">Aceptar </string>
+    <string name="ButtonCancelar">Cancel·lar</string>
+
+
+    <!-- Pantalla Login -->
+
+    <string name="FotoLogo">Logo Aplicació</string>
+    <string name="ErrorSesionGoogle">No s´ha pogut iniciar sessió amb Google</string>
+    <string name="ErrorSesionFirebase">No s´ha pogut iniciar sessió amb Firebase</string>
+    <string name="ErrorAlmacenamiento">Hi ha hagut un error,asseguri de donar el permis d\'emmagatzematge a la aplicació </string>
+    <string name="TextoDescriptivoAplicacion">Aplicación Android Bookcrossing </string>
+    <string name="ErrorWhatsapp">Whatsapp no està instal·lat</string>
+
+
+    <!--adapter -->
+    <string name="Disponible">Disponible</string>
+
+    <string name="NoDisponible">No Disponible</string>
+
+    <!-- fragment detail -->
+    <string name="Liberar">Alliberar</string>
+    <string name="Reservar">Reservar</string>
+    <string name="Localización">Localització</string>
+
+    <string name="DialogAñadirFavorito">¿Desitja tenir en la seva llista de Favorits el llibre</string>
+    <string name="title_activity_maps">Mapa</string>
+
+</resources>

@@ -1,0 +1,60 @@
+<resources>
+
+    <!-- Pantalla ItemListActivity -->
+
+    <string-array name="idioma_array">
+        <item>Español</item>
+        <item>Catalán</item>
+        <item>Inglés</item>
+    </string-array>
+
+    <string name="app_name">BookCrossing</string>
+    <string name="title_item_list">Listado de Libros</string>
+    <string name="title_item_detail">Item Detail</string>
+    <string name="MenuListarLibros">Listar Libros</string>
+    <string name="MenuMisFavoritos">Mis Favoritos</string>
+    <string name="MenuMisReservas">Mis Reservas</string>
+    <string name="MenuAñadirLibro">Añadir Libro</string>
+    <string name="MenuConfiguracion">Configuración</string>
+    <string name="MenuCerrarSesion">Cerrar Sesión</string>
+    <string name="MenuCompartirconMisApps">Compartir con mis Apps</string>
+    <string name="MenuCompartirconWhatsapp">Compartir con WhatsApp</string>
+    <string name="action_pregunta_closeSesion">Seguro que desea cerrar la sesión?</string>
+    <string name="SI">SI</string>
+    <string name="NO">NO</string>
+    <string name="ErrorCargaFirebase">No se leído desde el servidor, se carga la información de la base de datos local</string>
+    <string name="ErrorRed">No hay acceso a Internet, se carga la información de la base de datos local</string>
+    <string name="RedActivada">Red activada, cargando datos desde FireBase</string>
+    <string name="Detalles_app">Compartir info. y icono de la App</string>
+    <string name="ListaFavoritosVacia">La Lista de favoritos está vacía </string>
+    <string name="ListaRealmVacia">Base de datos local sin datos </string>
+    <string name="DialogIdioma">Seleccione su idioma preferido </string>
+    <string name="ButtonAceptar">Aceptar </string>
+    <string name="ButtonCancelar">Cancelar</string>
+
+
+    <!-- Pantalla Login -->
+
+    <string name="FotoLogo">Logo Aplicación</string>
+    <string name="ErrorSesionGoogle">No se pudo iniciar sesión con Google</string>
+    <string name="ErrorSesionFirebase">No se pudo iniciar sesión con Firebase</string>
+    <string name="ErrorAlmacenamiento">Ocurrió un Error,asegúrese de otorgar el permiso de almacenamiento a la aplicación</string>
+    <string name="TextoDescriptivoAplicacion">Aplicación Android Bookcrossing </string>
+    <string name="ErrorWhatsapp">Whatsapp no está instalado</string>
+
+
+    <!--adapter -->
+    <string name="Disponible">Disponible</string>
+
+    <string name="NoDisponible">No Disponible</string>
+
+    <!-- fragment detail -->
+    <string name="Liberar">Liberar</string>
+    <string name="Reservar">Reservar</string>
+    <string name="Localización">Localización</string>
+
+    <string name="DialogAñadirFavorito">¿Desea tener en su lista de Favoritos el libro</string>
+    <string name="title_activity_maps">Mapa</string>
+
+
+</resources>
