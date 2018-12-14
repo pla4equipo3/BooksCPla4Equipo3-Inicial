@@ -72,6 +72,14 @@ public class LibroDatos {
             return false;
     }
 
+    //eliminar registros base datos
+    public static void deleteDatabase(){
+      conexion = Realm.getDefaultInstance();
+      conexion.beginTransaction();
+        RealmResults<Libro> lista =conexion.where(Libro.class).findAll();
+        lista.deleteAllFromRealm();
+      conexion.commitTransaction();
+    }
     //Eliminamos el libro
     public static  void deleteBook(int  bookpos){
         RealmResults<Libro> l;

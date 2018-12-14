@@ -27,6 +27,7 @@
     <string name="RedActivada">Red activada, cargando datos desde FireBase</string>
     <string name="Detalles_app">Compartir info. y icono de la App</string>
     <string name="ListaFavoritosVacia">La Lista de favoritos está vacía </string>
+    <string name="ListaRealmVacia">Base de datos local sin datos </string>
     <string name="DialogIdioma">Seleccione su idioma preferido </string>
     <string name="ButtonAceptar">Aceptar </string>
     <string name="ButtonCancelar">Cancelar</string>

@@ -28,6 +28,8 @@
     <string name="RedActivada">Xarxa activada, carregant  dades desde FireBase</string>
     <string name="Detalles_app">Compartir info. i icona de la App</string>
     <string name="ListaFavoritosVacia">La Llista de favorits està buida </string>
+    <string name="ListaRealmVacia">Base de dades local buida </string>
+
     <string name="DialogIdioma">Seleccioni el seu idioma preferit </string>
     <string name="ButtonAceptar">Aceptar </string>
     <string name="ButtonCancelar">Cancel·lar</string>

@@ -94,6 +94,8 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
     private static final String BOOK_REFERENCE="books";
     private static final String TAG="Debug";
     ChangeLanguage idioma;
+    private ValueEventListener eventListener;
+    private ChildEventListener childEventListener;
     SimpleItemRecyclerViewAdapter adaptador;
 
     @Override
@@ -325,7 +327,7 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
     @Override
     protected void onPause() {
         super.onPause();
-        unregisterReceiver(connectionReceiver);
+        if (connectionReceiver!=null) unregisterReceiver(connectionReceiver);
     }
 
 
@@ -564,60 +566,30 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
     private void push()
     { // metodo de prueba solo verificar que hace el push bien
         Libro libro = new Libro();
-        libro.setAutor("Jane Austen");
-        libro.setTitulo("Orgullo y prejuicio");
-        libro.setDisponible("true");
+        libro.setAutor("Miguel de Cervantes");
+        libro.setTitulo("Don Quijote de la mancha");
+        libro.setDisponible("false");
 
-        mDatabase.child("10").setValue(libro);
+        mDatabase.child("11").setValue(libro);
     }
 
-    private void loadDataFirebase(){
-       // Toast.makeText(getApplicationContext(),"cargando datos Firebase",Toast.LENGTH_LONG).show();
 
+
+    private void loadDataFirebase(){
+        //cargar datos de Firebase
         FirebaseApp.initializeApp(ItemListActivity.this);
         setTitle(R.string.title_item_list);
-
-
-        mDatabase.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                //TODO por hacer cuando hay un nodo que se modifica
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-                //TODO por hacer cuando hay un nodo que se borra
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        // Leemos la información de la Base de Datos
-        mDatabase.addValueEventListener(new ValueEventListener() {
+        eventListener = new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 GenericTypeIndicator<ArrayList<Libro>> genericTypeIndicator =new GenericTypeIndicator<ArrayList<Libro>>(){};
+                LibroDatos.listalibros=dataSnapshot.getValue(genericTypeIndicator);
 
-                 LibroDatos.listalibros=dataSnapshot.getValue(genericTypeIndicator);
                 for (int i=0;i<LibroDatos.listalibros.size();i++) {
                     //Actualizamos el id puesto que no esta en Firebase
                     LibroDatos.listalibros.get(i).setId(i);
 
-                    if (!LibroDatos.existsById(LibroDatos.listalibros.get(i))){
+                    if (!LibroDatos.exists(LibroDatos.listalibros.get(i))){
                         //Si el libro no existe lo añadimos a la base de datos local
                         LibroDatos.conexion.beginTransaction();
                         LibroDatos.conexion.insert(LibroDatos.listalibros.get(i));
@@ -630,28 +602,32 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
             }
 
             @Override
-            public void onCancelled(DatabaseError error) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.d(TAG, "Error de lectura.", databaseError.toException());
                 Toast.makeText(ItemListActivity.this, getResources().getString(R.string.ErrorCargaFirebase), Toast.LENGTH_LONG).show();
                 loadDataRealm();
-                Log.d(TAG, "Error de lectura.", error.toException());
-            }
-        });
-
+                    }
+        };
+        mDatabase.addValueEventListener(eventListener); //registramos oyente
         loadRecycler(this,LibroDatos.listalibros,mTwoPane);
-
 
 
     }
 
+
+
     private void loadDataRealm(){
-       //Toast.makeText(getApplicationContext(),"cargando datos Bd local",Toast.LENGTH_LONG).show();
-
-       LibroDatos.listalibros = LibroDatos.getBooks();
+        //método carga la base de datos local
         Log.d(TAG,"datos" + LibroDatos.listalibros.size());
+        LibroDatos.listalibros = LibroDatos.getBooks();
+         if (LibroDatos.listalibros.isEmpty())
+         {
+             Toast.makeText(getApplicationContext(), getResources().getString(R.string.ListaRealmVacia), Toast.LENGTH_LONG).show();
 
-        loadRecycler(this,LibroDatos.listalibros,mTwoPane);
+         }else {
+             loadRecycler(this, LibroDatos.listalibros, mTwoPane);
 
-
+         }
     }
 
     private void loadRecycler(ItemListActivity mParentActivity,List<Libro> libros, Boolean mTwoPane)
@@ -677,8 +653,12 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
     }
 
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (eventListener!=null) mDatabase.removeEventListener(eventListener); // remover oyente
 
-
+    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

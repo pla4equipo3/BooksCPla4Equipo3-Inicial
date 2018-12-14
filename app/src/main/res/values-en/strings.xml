@@ -27,6 +27,7 @@
     <string name="RedActivada">Network enabled, loading data from FireBase</string>
     <string name="Detalles_app">Share info. and App icon</string>
     <string name="ListaFavoritosVacia">The Favorites list is empty </string>
+    <string name="ListaRealmVacia">Local database without data </string>
     <string name="DialogIdioma">Select your preferred language </string>
     <string name="ButtonAceptar">Accept </string>
     <string name="ButtonCancelar">Cancel</string>
