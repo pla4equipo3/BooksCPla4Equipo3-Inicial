@@ -18,6 +18,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 import androidx.core.view.LayoutInflaterCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.Toolbar;
 
@@ -242,7 +244,7 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
 
                                 break;
                             case 3:
-                                // push();
+                                push();
                                 break;
                             case 4:
                                 dialogChangeLanguage();
@@ -565,12 +567,16 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
 
     private void push()
     { // metodo de prueba solo verificar que hace el push bien
-        Libro libro = new Libro();
+        /*Libro libro = new Libro();
         libro.setAutor("Miguel de Cervantes");
         libro.setTitulo("Don Quijote de la mancha");
         libro.setDisponible("false");
 
-        mDatabase.child("11").setValue(libro);
+        mDatabase.child("11").setValue(libro);*/
+        Intent intent = new Intent(getApplicationContext(), addBook.class)
+                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
+
     }
 
 

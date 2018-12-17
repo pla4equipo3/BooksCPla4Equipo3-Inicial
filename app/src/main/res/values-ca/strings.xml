@@ -57,5 +57,11 @@
 
     <string name="DialogAñadirFavorito">¿Desitja tenir en la seva llista de Favorits el llibre</string>
     <string name="title_activity_maps">Mapa</string>
+    <string name="title_addBooks">Nou Llibre</string>
+    <string name="nTitulo">Titol del Llibre</string>
+    <string name="nDescripcion">Descripció del Llibre</string>
+    <string name="nAutor">Autor del Llibre</string>
+    <string name="nFecha">Any</string>
+    <string name="botonNewBook">Afegir</string>
 
 </resources>

@@ -56,6 +56,12 @@
 
     <string name="DialogAñadirFavorito">¿Do you want to have in your Favorites list the book</string>
     <string name="title_activity_maps">Map</string>
+    <string name="title_addBooks">New Book</string>
+    <string name="nTitulo">Book Title</string>
+    <string name="nDescripcion">Book Description</string>
+    <string name="nAutor">Book Author</string>
+    <string name="nFecha">Year</string>
+    <string name="botonNewBook">Add</string>
 
 
 </resources>

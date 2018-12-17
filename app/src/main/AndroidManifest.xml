@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="edu.uoc.plagrupo3.bookscpla4equipo3">
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
+    <!--
+           The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+           Google Maps Android API v2, but you must specify either coarse or fine
+           location permissions for the 'MyLocation' functionality.
+      -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -15,12 +22,8 @@
         android:smallScreens="true"
         android:xlargeScreens="true" />
 
-    <!--
-         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
-         Google Maps Android API v2, but you must specify either coarse or fine
-         location permissions for the 'MyLocation' functionality. 
-    -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
 
     <application
         android:name=".modeloDatos.ConfigBBDDRealm"
@@ -32,7 +35,7 @@
         <activity
             android:name=".ui.ItemListActivity"
             android:label="@string/title_item_list"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".ui.ItemDetailActivity"
             android:label="@string/title_item_detail"
@@ -76,7 +79,10 @@
 
         <activity
             android:name=".ui.MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".ui.addBook"
+            android:label="@string/title_addBooks" />
     </application>
 
 </manifest>

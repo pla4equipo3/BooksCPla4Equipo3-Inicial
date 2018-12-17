@@ -1,5 +1,7 @@
 package edu.uoc.plagrupo3.bookscpla4equipo3.ui;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.FragmentActivity;
 import edu.uoc.plagrupo3.bookscpla4equipo3.R;
 import edu.uoc.plagrupo3.bookscpla4equipo3.modeloDatos.Libro;
@@ -17,7 +19,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import static edu.uoc.plagrupo3.bookscpla4equipo3.ui.ItemDetailFragment.ARG_ITEM_ID;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
     private Libro mItem;
@@ -25,6 +27,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

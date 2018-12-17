@@ -33,7 +33,7 @@ public class LibroDatos {
         return   conexion.copyFromRealm(LibroDatos.conexion.where(Libro.class).findAll());
     }
 
-     //función que devuelve un nuevo id para la base datos, ya que realm no tiene autoincremento
+    //función que devuelve un nuevo id para la base datos, ya que realm no tiene autoincremento
 
     public static int calculateIndex()
     {
@@ -53,7 +53,8 @@ public class LibroDatos {
     //Comprueba si existe un libro por titulo
 
     public static  boolean exists(Libro libro){
-        RealmResults<Libro> l = conexion.where(Libro.class).equalTo("titulo", libro.getTitulo()).findAll();
+        List<Libro> l =conexion.where(Libro.class).equalTo("titulo", libro.getTitulo()).findAll();
+        // RealmResults<Libro> l = conexion.where(Libro.class).equalTo("titulo", libro.getTitulo()).findAll();
         //Devuelve resultado en función de si encuentra el titulo o no
         if (l.size() > 0)
             return true;
@@ -64,21 +65,33 @@ public class LibroDatos {
     //Comprueba si existe un libro por id
 
     public static  boolean existsById(Libro libro){
-        RealmResults<Libro> l = conexion.where(Libro.class).equalTo("id", libro.getId()).findAll();
+        List<Libro> l = conexion.where(Libro.class).equalTo("id", libro.getId()).findAll();
+
+        //
+        // RealmResults<Libro> l = conexion.where(Libro.class).equalTo("id", libro.getId()).findAll();
         //Devuelve resultado en función de si encuentra el titulo o no
         if (l.size() > 0)
             return true;
         else
             return false;
     }
+    public static void updateId(){
+        conexion = Realm.getDefaultInstance();
+        conexion.beginTransaction();
+        RealmResults<Libro> listaFavoritos = conexion.where(Libro.class).equalTo("favorito",true).findAll().sort("id");
+        for (int i=0;i<listaFavoritos.size();i++) {
+            listaFavoritos.setInt("id",i);
+        }
+        conexion.commitTransaction();
+    }
 
     //eliminar registros base datos
     public static void deleteDatabase(){
-      conexion = Realm.getDefaultInstance();
-      conexion.beginTransaction();
+        conexion = Realm.getDefaultInstance();
+        conexion.beginTransaction();
         RealmResults<Libro> lista =conexion.where(Libro.class).findAll();
         lista.deleteAllFromRealm();
-      conexion.commitTransaction();
+        conexion.commitTransaction();
     }
     //Eliminamos el libro
     public static  void deleteBook(int  bookpos){
@@ -96,8 +109,10 @@ public class LibroDatos {
 
     public static List<Libro> getAllFavourite(){
         conexion = Realm.getDefaultInstance();
-        RealmResults<Libro> listaFavoritos = conexion.where(Libro.class).equalTo("favorito",true).findAll();
-        return listaFavoritos;
+        List<Libro> l = conexion.where(Libro.class).equalTo("favorito",true).findAll();
+        //RealmResults<Libro> listaFavoritos = conexion.where(Libro.class).equalTo("favorito",true).findAll();
+
+        return l;
     }
 
 
@@ -121,7 +136,7 @@ public class LibroDatos {
         conexion.insertOrUpdate(libro);
         conexion.commitTransaction();
         */
-        }
+    }
 
 
 
