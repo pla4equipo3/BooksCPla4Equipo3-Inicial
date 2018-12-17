@@ -9,11 +9,12 @@
     </string-array>
 
     <string name="app_name">BookCrossing</string>
+    <string name="activityRegister_name">Sign In</string>
     <string name="title_item_list">List of Books</string>
     <string name="title_item_detail">No Title</string>
     <string name="MenuListarLibros">List Books</string>
     <string name="MenuMisFavoritos">My Favorites</string>
-    <string name="MenuMisReservas">My Bookings</string>
+    <string name="MenuMisReservas">My current Reserves</string>
     <string name="MenuAñadirLibro">Add Book</string>
     <string name="MenuConfiguracion">Language Settings</string>
     <string name="MenuCerrarSesion">Close Session</string>
@@ -31,7 +32,16 @@
     <string name="DialogIdioma">Select your preferred language </string>
     <string name="ButtonAceptar">Accept </string>
     <string name="ButtonCancelar">Cancel</string>
-
+    <string name="FilterBook">Search by title</string>
+    <string name="SinResultados">Without results</string>
+    <string name="MenuDisponibles">books available</string>
+    <string name="Email">contact us by email</string>
+    <string name="Email_Ir">Go</string>
+    <string name="Email_Tema">Subject</string>
+    <string name="Email_Mensaje">Email message goes here</string>
+    <string name="Email_Enviar">Send email...</string>
+    <string name="Email_NoInstalado">There is no email client installed</string>
+    <string name="ErrorServidor">Error on the server, operation canceled</string>
 
 
     <!-- Pantalla Login -->
@@ -42,6 +52,32 @@
     <string name="ErrorAlmacenamiento">An Error occurred, be sure to grant the storage permission to the application</string>
     <string name="TextoDescriptivoAplicacion">Bookcrossing Android App </string>
     <string name="ErrorWhatsapp">Whatsapp is not installed</string>
+    <string name="hintEmail">E-mail</string>
+    <string name="hintPassword">Password</string>
+    <string name="labelActualizarPassword">¿Have you forgotten the password?</string>
+    <string name="botonIniciarSesion">Log in</string>
+    <string name="barraDivisora">OR</string>
+    <string name="botonRegistrar">Sign in</string>
+    <string name="botonIniciarSesionGoogle">log in with google</string>
+    <string name="ErrorEmail">It is not a valid mail</string>
+    <string name="ErrorPassw">The password must have more than 6 characters</string>
+    <string name="ErrorRegistro">Account already exists</string>
+    <string name="Ok_Registro">registered successfully</string>
+    <string name="ErrorEmail2">Enter an email</string>
+    <string name="ErrorPassw2">Missing password</string>
+    <string name="ErrorInicioSesion">Incorrect password / email or Server error</string>
+    <string name="InicioSesion">Session Started by:</string>
+    <string name="RestablecerContrasenyaTitulo">restore password</string>
+    <string name="RestablecerContrasenyaMensaje">Write your email and we send you a link to reset the password, thanks</string>
+    <string name="ProgresDialogConfirmacionEnvio">Email sent to: </string>
+    <string name="ProgresDialogCancelacionEnvio">Fail to send mail:</string>
+    <string name="LiberadoOk">The book is already released</string>
+    <string name="LiberadoNot">You can not release this book, you are not reading it</string>
+    <string name="LibroReservado">Book booked correctly</string>
+    <string name="LibroLiberado">Book released correctly</string>
+    <string name="SinInternet">Without access to the internet, they can not download the available books</string>
+
+
 
 
     <!--adapter -->
@@ -56,6 +92,12 @@
 
     <string name="DialogAñadirFavorito">¿Do you want to have in your Favorites list the book</string>
 
+    <!--register activity -->
+    <string name="hintUsername">UserName</string>
+    <string name="ErrorUserName">Enter a User name</string>
+    <string name="ElegirFoto">Choose a photo</string>
+    <string name="Foto_Error">Could not upload the photo correctly</string>
+    <string name="LabelFoto">upload a photo if you want</string>
 
 
 </resources>

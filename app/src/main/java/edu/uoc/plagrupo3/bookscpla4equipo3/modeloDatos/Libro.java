@@ -15,12 +15,14 @@ public class Libro extends RealmObject {
     private String longitud;
     private String disponible;
     private Boolean favorito;
+    private String keylibro;
+    private String usuarioactivo;
 
     public Libro(){}
     //Constructor de la clase con todos los parámetros.
 
     public Libro(int identificador, String titulo, String autor, String fechapub,
-                 String descripcion, String URL,String latitud, String longitud, String disponible,Boolean favorito) {
+                 String descripcion, String URL,String latitud, String longitud, String disponible,Boolean favorito,String keylibro,String usuarioactivo) {
         this.id = identificador;
         this.titulo = titulo;
         this.autor = autor;
@@ -31,6 +33,8 @@ public class Libro extends RealmObject {
         this.longitud = longitud;
         this.disponible = disponible;
         this.favorito = favorito;
+        this.keylibro = keylibro;
+        this.usuarioactivo = usuarioactivo;
     }
 
     //Get y sets de las propiedades.
@@ -86,6 +90,10 @@ public class Libro extends RealmObject {
     public String getDisponible(){return this.disponible;}
     public void setFavorito(Boolean favorito){this.favorito=favorito;}
     public Boolean getFavorito(){return this.favorito;}
+    public String getKeylibro() { return keylibro; }
+    public void setKeylibro(String keylibro) {this.keylibro = keylibro; }
+    public String getUsuarioactivo() { return usuarioactivo;}
+    public void setUsuarioactivo(String usuarioactivo) { this.usuarioactivo = usuarioactivo;}
 
     /*
    public boolean estaDisponible() {

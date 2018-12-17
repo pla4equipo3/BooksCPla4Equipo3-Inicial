@@ -3,6 +3,10 @@ package edu.uoc.plagrupo3.bookscpla4equipo3.ui;
 import android.app.Activity;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import android.app.AlertDialog;
@@ -17,6 +21,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import edu.uoc.plagrupo3.bookscpla4equipo3.R;
 import edu.uoc.plagrupo3.bookscpla4equipo3.modeloDatos.Libro;
@@ -33,7 +38,10 @@ public class ItemDetailFragment extends Fragment {
     private Libro mItem;
     private TextView descripcion,autor,fechaP,titulo,disponible;
     private ImageView fotoLibro;
-    private FloatingActionButton buttonFavoritos;
+    private FirebaseUser user;
+    private FirebaseDatabase database;
+    private DatabaseReference mDatabaseRef;
+   // private FloatingActionButton buttonFavoritos;
     private Button buttonLiberar,buttonReservar;
     private ImageView imageGPS;
 
@@ -45,9 +53,12 @@ public class ItemDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-          //  mItem = LibroDatos.listalibros.get(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
-            int p = getArguments().getInt(ARG_ITEM_ID);
-            mItem = LibroDatos.getBooks().get(getArguments().getInt(ARG_ITEM_ID));
+           // int n = LibroDatos.listalibros.size();
+           // int p = getArguments().getInt(ARG_ITEM_ID);
+           //mItem = LibroDatos.listalibros.get(Integer.parseInt(getArguments().getString(ARG_ITEM_ID)));
+            mItem = LibroDatos.listalibros.get(getArguments().getInt(ARG_ITEM_ID));
+
+          //  mItem = LibroDatos.getBooks().get(getArguments().getInt(ARG_ITEM_ID));
 
             Activity activity = this.getActivity();
             CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) activity.findViewById(R.id.toolbar_layout);
@@ -69,12 +80,15 @@ public class ItemDetailFragment extends Fragment {
         fechaP = (TextView)rootView.findViewById(R.id.textViewFecha);
         fotoLibro = (ImageView)rootView.findViewById(R.id.imageViewFotoLibro);
         disponible = (TextView)rootView.findViewById(R.id.textViewDisponible);
-        buttonFavoritos = (FloatingActionButton)rootView.findViewById(R.id.buttonFavorito);
+       // buttonFavoritos = (FloatingActionButton)rootView.findViewById(R.id.buttonFavorito);
         buttonLiberar = (Button)rootView.findViewById(R.id.buttonLiberar);
         buttonReservar = (Button)rootView.findViewById(R.id.buttonReservar);
         imageGPS = (ImageView) rootView.findViewById(R.id.imageButtonGPS);
 
-        // Show the dummy content as text in a TextView.
+        user = FirebaseAuth.getInstance().getCurrentUser(); // obtenemos usuario actual
+
+        database=FirebaseDatabase.getInstance();
+        mDatabaseRef=database.getReference();
 
         if (mItem != null) {
             autor.setText("By "+mItem.getAutor());
@@ -96,18 +110,80 @@ public class ItemDetailFragment extends Fragment {
 
            }
 
-           buttonFavoritos.setOnClickListener(new View.OnClickListener() {
+           buttonReservar.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                   dialogCloseSesion();
-
+                   booking();
                }
            });
+
+           buttonLiberar.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   free();
+               }
+           });
+
+
+
 
         return rootView;
     }
 
 
+    private void booking()
+    {
+        if (disponible.getText().toString().equalsIgnoreCase(getResources().getString(R.string.Disponible)))
+        {
+           // Hacemos la reserva ,obtenemos el usuario y la clave del libro y actualizamos datos
+
+            if (user!=null){
+                String emailUser = user.getEmail();
+                String clave = mItem.getKeylibro();
+
+                mDatabaseRef.child("books").child(clave).child("disponible").setValue("false");
+                mDatabaseRef.child("books").child(clave).child("usuarioactivo").setValue(emailUser);
+                Toast.makeText(getContext(),getResources().getString(R.string.LibroReservado),Toast.LENGTH_LONG).show();
+                }
+
+        }else{
+            Toast.makeText(getContext(),getResources().getString(R.string.NoDisponible),Toast.LENGTH_LONG).show();
+            }
+
+    }
+
+    private void free(){
+
+       // liberamos el libro en casa de que el libro no este disponible y que el usuario de la aplicacion sea el mismo que hay en la base de datos
+       if (disponible.getText().toString().equalsIgnoreCase(getResources().getString(R.string.Disponible)))
+       {
+           Toast.makeText(getContext(),getResources().getString(R.string.LiberadoOk),Toast.LENGTH_LONG).show();
+
+       }else{
+           String usuarioActivo = mItem.getUsuarioactivo();
+           String clave = mItem.getKeylibro();
+
+           if (usuarioActivo!=null)
+           {
+               if (usuarioActivo.equalsIgnoreCase(user.getEmail())){
+
+                   mDatabaseRef.child("books").child(clave).child("disponible").setValue("true");
+                   mDatabaseRef.child("books").child(clave).child("usuarioactivo").setValue("sin");
+                   Toast.makeText(getContext(),getResources().getString(R.string.LibroLiberado),Toast.LENGTH_LONG).show();
+
+
+               }else{
+                   Toast.makeText(getContext(),getResources().getString(R.string.LiberadoNot),Toast.LENGTH_LONG).show();
+
+               }
+           }
+
+       }
+
+
+    }
+
+/*
     private void dialogCloseSesion() {
         AlertDialog alertDialog = new AlertDialog.Builder(getContext()).create();
         alertDialog.setTitle(getResources().getString(R.string.MenuMisFavoritos));
@@ -132,8 +208,6 @@ public class ItemDetailFragment extends Fragment {
         alertDialog.show();
     }
 
-    private void addFavourite(){
-
-    }
+  */
 
 }

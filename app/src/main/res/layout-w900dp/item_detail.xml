@@ -24,7 +24,7 @@
                 android:src="@mipmap/ic_launcher"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-
+<!--
             <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/buttonFavorito"
                 android:layout_width="wrap_content"
@@ -35,7 +35,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@android:drawable/star_big_off" />
-
+-->
             <TextView
                 android:id="@+id/textViewTitulo"
                 android:layout_width="0dp"
@@ -96,9 +96,10 @@
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
+                android:gravity="start"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/buttonFavorito"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/imageViewFotoLibro"
                 app:layout_constraintTop_toTopOf="parent" />
 

@@ -9,11 +9,12 @@
     </string-array>
 
     <string name="app_name">BookCrossing</string>
+    <string name="activityRegister_name">Registro</string>
     <string name="title_item_list">Listado de Libros</string>
     <string name="title_item_detail">Item Detail</string>
     <string name="MenuListarLibros">Listar Libros</string>
     <string name="MenuMisFavoritos">Mis Favoritos</string>
-    <string name="MenuMisReservas">Mis Reservas</string>
+    <string name="MenuMisReservas">Mis Reservas Actuales</string>
     <string name="MenuAñadirLibro">Añadir Libro</string>
     <string name="MenuConfiguracion">Configuración</string>
     <string name="MenuCerrarSesion">Cerrar Sesión</string>
@@ -31,7 +32,21 @@
     <string name="DialogIdioma">Seleccione su idioma preferido </string>
     <string name="ButtonAceptar">Aceptar </string>
     <string name="ButtonCancelar">Cancelar</string>
-
+    <string name="FilterBook">Búsqueda por título</string>
+    <string name="SinResultados">Sin Resultados</string>
+    <string name="MenuDisponibles">Libros Disponibles</string>
+    <string name="Email">Contacta con nosotros por E-mail</string>
+    <string name="Email_Ir">Vamos</string>
+    <string name="Email_Tema">Asunto</string>
+    <string name="Email_Mensaje">Escribe un correo</string>
+    <string name="Email_Enviar">Enviar email...</string>
+    <string name="Email_NoInstalado">No tiene ninguna aplicación para mandar correos</string>
+    <string name="LiberadoOk">El libro ya está liberado</string>
+    <string name="LiberadoNot">No puede liberar este libro, no lo está leyendo usted</string>
+    <string name="LibroReservado">Libro reservado correctamente</string>
+    <string name="LibroLiberado">Libro liberado correctamente</string>
+    <string name="SinInternet">Sin acceso a internet, no pueden descargar los libros disponibles</string>
+    <string name="ErrorServidor">Error en el servidor, operación cancelada</string>
 
     <!-- Pantalla Login -->
 
@@ -41,6 +56,26 @@
     <string name="ErrorAlmacenamiento">Ocurrió un Error,asegúrese de otorgar el permiso de almacenamiento a la aplicación</string>
     <string name="TextoDescriptivoAplicacion">Aplicación Android Bookcrossing </string>
     <string name="ErrorWhatsapp">Whatsapp no está instalado</string>
+    <string name="hintEmail">E-mail</string>
+    <string name="hintPassword">Contraseña</string>
+    <string name="labelActualizarPassword">¿Has olvidado la contraseña?</string>
+
+    <string name="botonIniciarSesion">Iniciar sesión</string>
+    <string name="botonRegistrar">Registrarse</string>
+    <string name="barraDivisora">O</string>
+    <string name="botonIniciarSesionGoogle">Iniciar sesión con Google</string>
+    <string name="ErrorEmail">No es un correo Válido</string>
+    <string name="ErrorPassw">La contraseña debe tener más de 6 caracteres</string>
+    <string name="ErrorRegistro">La cuenta ya existe</string>
+    <string name="Ok_Registro">registrado correctamente</string>
+    <string name="ErrorEmail2">Se debe ingresar un email</string>
+    <string name="ErrorPassw2">Falta ingresar la contraseña</string>
+    <string name="ErrorInicioSesion">Contraseña/email incorrectos o error de Servidor</string>
+    <string name="RestablecerContrasenyaTitulo">Restablecer Contraseña</string>
+    <string name="InicioSesion">Sesion Iniciada por:</string>
+    <string name="RestablecerContrasenyaMensaje">Escribe tu email y te mandamos un enlace para restablecer la contraseña,gracias</string>
+    <string name="ProgresDialogConfirmacionEnvio">Correo Enviado a: </string>
+    <string name="ProgresDialogCancelacionEnvio">Fallo al enviar el correo:</string>
 
 
     <!--adapter -->
@@ -55,6 +90,11 @@
 
     <string name="DialogAñadirFavorito">¿Desea tener en su lista de Favoritos el libro</string>
 
-
+    <!--register activity -->
+    <string name="hintUsername">Nombre de Usuario</string>
+    <string name="ErrorUserName">Introduzca un nombre de Usuario</string>
+    <string name="ElegirFoto">Elegir una foto</string>
+    <string name="Foto_Error">No se ha podido subir la foto correctamente</string>
+    <string name="LabelFoto">Sube una foto si deseas</string>
 
 </resources>

@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.ActionBar;
 import androidx.core.app.NavUtils;
 import edu.uoc.plagrupo3.bookscpla4equipo3.R;
+import edu.uoc.plagrupo3.bookscpla4equipo3.sharePreferences.LoadLanguage;
 
 import android.view.MenuItem;
 
@@ -22,6 +23,7 @@ public class ItemDetailActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        new LoadLanguage(this).Change();
         setContentView(R.layout.activity_item_detail);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detail_toolbar);
         setSupportActionBar(toolbar);

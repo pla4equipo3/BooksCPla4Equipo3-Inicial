@@ -10,11 +10,12 @@
     </string-array>
 
     <string name="app_name">BookCrossing</string>
+    <string name="activityRegister_name">Registre</string>
     <string name="title_item_list">LListat de LLibres</string>
     <string name="title_item_detail">Sense Títol</string>
     <string name="MenuListarLibros">LListar LLibres</string>
     <string name="MenuMisFavoritos">Els meus Favorits</string>
-    <string name="MenuMisReservas">Les meves Reserves</string>
+    <string name="MenuMisReservas">Les meves Reserves Actuals</string>
     <string name="MenuAñadirLibro">Afegir LLibre</string>
     <string name="MenuConfiguracion">Configuració Idioma</string>
     <string name="MenuCerrarSesion">Tancar Sessió</string>
@@ -33,7 +34,21 @@
     <string name="DialogIdioma">Seleccioni el seu idioma preferit </string>
     <string name="ButtonAceptar">Aceptar </string>
     <string name="ButtonCancelar">Cancel·lar</string>
-
+    <string name="FilterBook">Reçerca per títol</string>
+    <string name="SinResultados">Sense Resultats</string>
+    <string name="MenuDisponibles">Libres Disponibles</string>
+    <string name="Email">Contacta amb nosaltres per E-mail</string>
+    <string name="Email_Ir">Anem</string>
+    <string name="Email_Tema">Assumpte</string>
+    <string name="Email_Mensaje">Escriu un correo</string>
+    <string name="Email_Enviar">Enviar email...</string>
+    <string name="Email_NoInstalado">No té cap aplicació de correu</string>
+    <string name="LiberadoOk">El libro ja està alliberat</string>
+    <string name="LiberadoNot">No pot alliberar aquest llibre, no ho està llegint vostè</string>
+    <string name="LibroReservado">Libre reservat correctament</string>
+    <string name="LibroLiberado">Llibrte alliberat correctament</string>
+    <string name="SinInternet">Sense accès a internet, no és poden descarregà els llibres disponibles</string>
+    <string name="ErrorServidor">Error en el servidor, operació cancel·lada</string>
 
     <!-- Pantalla Login -->
 
@@ -43,7 +58,26 @@
     <string name="ErrorAlmacenamiento">Hi ha hagut un error,asseguri de donar el permis d\'emmagatzematge a la aplicació </string>
     <string name="TextoDescriptivoAplicacion">Aplicación Android Bookcrossing </string>
     <string name="ErrorWhatsapp">Whatsapp no està instal·lat</string>
+    <string name="hintEmail">E-mail</string>
+    <string name="hintPassword">Contrasenya</string>
+    <string name="labelActualizarPassword">¿Has oblidat la contrasenya?</string>
+    <string name="botonIniciarSesion">Iniciar sessió</string>
+    <string name="barraDivisora">O</string>
+    <string name="botonRegistrar">Registrarse</string>
+    <string name="botonIniciarSesionGoogle">Iniciar sessió amb Google</string>
+    <string name="ErrorEmail">No es un correu Vàlid</string>
+    <string name="ErrorPassw">La contrasenya ha de tenir més de 6 caràcters</string>
+    <string name="ErrorRegistro">La compte ja existeix</string>
+    <string name="Ok_Registro">registrat correctament</string>
+    <string name="ErrorEmail2">Ha d\'ingressar un email</string>
+    <string name="ErrorPassw2">Falta ingressar la contrasenya</string>
+    <string name="ErrorInicioSesion">Contrasenya/email incorrectes o error del Servidor</string>
 
+    <string name="InicioSesion">Sessió Iniciada per:</string>
+    <string name="RestablecerContrasenyaTitulo">Restablir Contrasenya</string>
+    <string name="RestablecerContrasenyaMensaje">Escriu el teu correu i rebràs un enllaç per restablir la contrasenya,gràcies</string>
+    <string name="ProgresDialogConfirmacionEnvio">Correu enviat a: </string>
+    <string name="ProgresDialogCancelacionEnvio">Error al enviar el correu:</string>
 
     <!--adapter -->
     <string name="Disponible">Disponible</string>
@@ -57,4 +91,10 @@
 
     <string name="DialogAñadirFavorito">¿Desitja tenir en la seva llista de Favorits el llibre</string>
 
+    <!--register activity -->
+    <string name="hintUsername">Nom d\'Usuari</string>
+    <string name="ErrorUserName">Introdueixi un nom d\'Usuari</string>
+    <string name="ElegirFoto">Escull una foto</string>
+    <string name="Foto_Error">No s\'ha pogut pujar la foto correctament</string>
+    <string name="LabelFoto">Puja una foto si desitjes</string>
 </resources>
