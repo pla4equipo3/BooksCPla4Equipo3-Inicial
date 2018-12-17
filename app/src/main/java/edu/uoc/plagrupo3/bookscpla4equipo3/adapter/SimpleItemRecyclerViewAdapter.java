@@ -3,6 +3,7 @@ package edu.uoc.plagrupo3.bookscpla4equipo3.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -95,14 +96,13 @@ public class SimpleItemRecyclerViewAdapter extends RecyclerView.Adapter<SimpleIt
 
         }
 
-     //   if (mValues.get(position).estaDisponible())
-     //       holder.disponiblelista.setTextColor(Color.GREEN);
-     //   else
-     //       holder.disponiblelista.setTextColor(Color.RED);
-       // new LibroDatos.cargaImagendeURL(holder.imagenlista).execute(mValues.get(position).getUrlimage());
+         if (mValues.get(position).getUrlimage()== null){
+            Picasso.get().load(R.drawable.logo).fit().centerCrop().into(holder.imagenlista);
 
-        Picasso.get().load(mValues.get(position).getUrlimage()).error(R.drawable.no_photo).placeholder(R.drawable.logo).fit().centerCrop().into(holder.imagenlista);
-
+        }
+        else {
+            Picasso.get().load(mValues.get(position).getUrlimage()).error(R.drawable.no_photo).placeholder(R.drawable.logo).fit().centerCrop().into(holder.imagenlista);
+        }
         holder.itemView.setTag(mValues.get(position));
         holder.itemView.setOnClickListener(mOnClickListener);
     }
