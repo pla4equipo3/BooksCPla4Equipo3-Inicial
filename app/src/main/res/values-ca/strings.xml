@@ -36,7 +36,7 @@
     <string name="ButtonCancelar">Cancel·lar</string>
     <string name="FilterBook">Reçerca per títol</string>
     <string name="SinResultados">Sense Resultats</string>
-    <string name="MenuDisponibles">Libres Disponibles</string>
+    <string name="MenuDisponibles">LLibres Disponibles</string>
     <string name="Email">Contacta amb nosaltres per E-mail</string>
     <string name="Email_Ir">Anem</string>
     <string name="Email_Tema">Assumpte</string>
@@ -90,6 +90,9 @@
     <string name="Localización">Localització</string>
 
     <string name="DialogAñadirFavorito">¿Desitja tenir en la seva llista de Favorits el llibre</string>
+    <string name="OperacionNo">Sense internet, operació no permitida</string>
+
+
 
     <!--register activity -->
     <string name="hintUsername">Nom d\'Usuari</string>
@@ -97,4 +100,28 @@
     <string name="ElegirFoto">Escull una foto</string>
     <string name="Foto_Error">No s\'ha pogut pujar la foto correctament</string>
     <string name="LabelFoto">Puja una foto si desitjes</string>
+
+<!-- addbook activity -->
+
+    <string name="title_activity_maps">Mapa</string>
+    <string name="title_addBooks">Nou Llibre</string>
+    <string name="nTitulo">Titol del Llibre</string>
+    <string name="nDescripcion">Descripció del Llibre</string>
+    <string name="nAutor">Autor del Llibre</string>
+    <string name="nFecha">Any de la Publicació</string>
+    <string name="botonNewBook">Afegir</string>
+
+    <string name="añadirUbicacion">Afegeix la teva localizació</string>
+    <string name="errorTitulo">Introdueix un títol</string>
+    <string name="errorAutor">Introdueix un autor</string>
+    <string name="errorFecha">Introdueix una data de Publicació</string>
+    <string name="errorLocalizacion">Afegeix primer la seva Localizació</string>
+    <string name="errorDescripcion">Afegeix una Descripció</string>
+    <string name="Latitud">Latitud:</string>
+    <string name="Longitud">Longitud:</string>
+    <string name="LibroSubidoOk">El llibre s\'ha afegit correctament:</string>
+    <string name="LibroSubidoNot">Error no s´ha pogut afegir el llibre</string>
+
+
+
 </resources>

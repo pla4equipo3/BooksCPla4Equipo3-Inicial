@@ -34,7 +34,7 @@
     <string name="ButtonCancelar">Cancel</string>
     <string name="FilterBook">Search by title</string>
     <string name="SinResultados">Without results</string>
-    <string name="MenuDisponibles">books available</string>
+    <string name="MenuDisponibles">Books Available</string>
     <string name="Email">contact us by email</string>
     <string name="Email_Ir">Go</string>
     <string name="Email_Tema">Subject</string>
@@ -91,6 +91,9 @@
     <string name="Localización">Location</string>
 
     <string name="DialogAñadirFavorito">¿Do you want to have in your Favorites list the book</string>
+    <string name="OperacionNo">Without internet, operation not allowed</string>
+
+
 
     <!--register activity -->
     <string name="hintUsername">UserName</string>
@@ -99,5 +102,26 @@
     <string name="Foto_Error">Could not upload the photo correctly</string>
     <string name="LabelFoto">upload a photo if you want</string>
 
+
+    <!-- addbook activity -->
+
+    <string name="title_activity_maps">Map</string>
+    <string name="title_addBooks">New Book</string>
+    <string name="nTitulo">Book Title</string>
+    <string name="nDescripcion">Book Description</string>
+    <string name="nAutor">Book Author</string>
+    <string name="nFecha">Year</string>
+    <string name="botonNewBook">Add</string>
+
+    <string name="añadirUbicacion">Add your location</string>
+    <string name="errorTitulo">Enter a title</string>
+    <string name="errorAutor">Enter an author</string>
+    <string name="errorFecha">Enter a Publication Date</string>
+    <string name="errorLocalizacion">First add your Location</string>
+    <string name="errorDescripcion">Enter a Description</string>
+    <string name="Latitud">Latitude:</string>
+    <string name="Longitud">Length:</string>
+    <string name="LibroSubidoOk">The book has been added correctly</string>
+    <string name="LibroSubidoNot">Error the book could not be added</string>
 
 </resources>

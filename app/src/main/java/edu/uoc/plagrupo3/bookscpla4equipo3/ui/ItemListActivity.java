@@ -1,13 +1,11 @@
 package edu.uoc.plagrupo3.bookscpla4equipo3.ui;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -15,9 +13,7 @@ import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.SearchView;
 import androidx.core.content.FileProvider;
 import androidx.core.view.LayoutInflaterCompat;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,14 +75,9 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 
 public class ItemListActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener {
@@ -257,7 +248,11 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
                                 try {
                                     if (TestearRed.isNetworkConnected(getApplicationContext()))
                                         loadDataFirebase();
-                                    else loadDataRealm();
+                                    else {
+                                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.ErrorRed),Toast.LENGTH_LONG).show();
+                                        loadDataRealm();
+
+                                    }
                                 }catch (NullPointerException ex){ex.printStackTrace();}
                                 break;
 
@@ -279,9 +274,15 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
 
                                 break;
                             case 3:
-                                // push();
+                                try {
+                                    if (TestearRed.isNetworkConnected(getApplicationContext()))
+                                        pushBook();
+                                    else Toast.makeText(getApplicationContext(),getResources().getString(R.string.OperacionNo),Toast.LENGTH_LONG).show();
+                                }catch (NullPointerException ex){ex.printStackTrace();}
+
                                 break;
                             case 4:
+
                                 dialogChangeLanguage();
 
                                 break;
@@ -348,8 +349,7 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
 
          @Override
          public boolean onQueryTextChange(String newText) {
-            // String r = newText.toLowerCase();
-             loadFilter(newText); // cargar metodo que filtra por letra
+              loadFilter(newText); // cargar metodo que filtra por letra
 
              return false;
          }
@@ -357,6 +357,7 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
      });
 
     }
+
     private void loadBooking()
     {
         FirebaseUser user = mAuth.getCurrentUser();
@@ -607,6 +608,16 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
 
 
     }
+
+    private void deletebase()
+    {
+        LibroDatos.conexion.beginTransaction();
+        RealmResults<Libro> ls = LibroDatos.conexion.where(Libro.class).findAll();
+
+           ls.deleteAllFromRealm();
+        LibroDatos.conexion.commitTransaction();
+
+    }
     private void sendEmail()
     {
         String[] TO = {"Pla4.equipo3@gmail.com"};
@@ -618,7 +629,6 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
 
         try {
             startActivity(Intent.createChooser(emailIntent, getResources().getString(R.string.Email_Enviar)));
-            finish();
 
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(this,
@@ -825,6 +835,12 @@ public class ItemListActivity extends AppCompatActivity implements GoogleApiClie
         libro.setDisponible("false");
 
         mDatabase.child("11").setValue(libro);
+    }
+
+    private void pushBook(){
+        Intent intent = new Intent(getApplicationContext(), AddBook.class);
+               // .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        startActivity(intent);
     }
 
 

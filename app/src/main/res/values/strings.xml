@@ -90,11 +90,38 @@
 
     <string name="DialogAñadirFavorito">¿Desea tener en su lista de Favoritos el libro</string>
 
+    <string name="OperacionNo">Sin internet, operación no permitida</string>
+
     <!--register activity -->
     <string name="hintUsername">Nombre de Usuario</string>
     <string name="ErrorUserName">Introduzca un nombre de Usuario</string>
     <string name="ElegirFoto">Elegir una foto</string>
     <string name="Foto_Error">No se ha podido subir la foto correctamente</string>
     <string name="LabelFoto">Sube una foto si deseas</string>
+
+
+    <!-- add book activity -->
+
+
+    <string name="title_activity_maps">Mapa</string>
+    <string name="title_addBooks">Nuevo libro</string>
+    <string name="nTitulo">Título del Libro</string>
+    <string name="nAutor">Autor del Libro</string>
+    <string name="nDescripcion">Descripción del Libro</string>
+    <string name="nFecha">Fecha Publicación</string>
+    <string name="botonNewBook">Añadir Libro</string>
+
+    <string name="añadirUbicacion">Agrega tu localización</string>
+    <string name="errorTitulo">Introduzca un título</string>
+    <string name="errorAutor">Introduzca un autor</string>
+    <string name="errorFecha">Introduzca una Fecha de Publicación</string>
+    <string name="errorLocalizacion">Agrega primero su Localización</string>
+
+    <string name="errorDescripcion">Introduzca una Descripción</string>
+    <string name="Latitud">Latitud:</string>
+    <string name="Longitud">Longitud:</string>
+    <string name="LibroSubidoOk">El libro ha sido añadido correctamente:</string>
+    <string name="LibroSubidoNot">Error no se pudo añadir el libro</string>
+
 
 </resources>

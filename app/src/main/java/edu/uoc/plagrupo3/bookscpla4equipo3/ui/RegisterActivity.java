@@ -182,7 +182,7 @@ public class RegisterActivity extends AppCompatActivity {
             {
                 ex.printStackTrace();
                 Log.e("ERROR",ex.getMessage());
-                Toast.makeText(getApplicationContext(),"Error2", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getResources().getString(R.string.ErrorServidor), Toast.LENGTH_LONG).show();
 
 
             }
